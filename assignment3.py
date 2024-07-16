@@ -96,6 +96,31 @@ def saddle_one(mat):
         maximum=max(l)
         if (maximum==minimum):
             return ((x+1,i+1))
+        
+def magic_square(mat):
+    sum_main=sum(mat[0])
+    for x in range (1,len(mat)):
+        if (sum(mat[x])!=sum_main):
+            return False
+    for y in range (0,len(mat[0])):
+        sum_local=0
+        for x in range (0,len(mat)):
+            sum_local+=mat[x][y]
+        if (sum_local!=sum_main):
+            return False
+    sum_local=0
+    for x in range (0,len(mat)):
+        sum_local+=mat[x][x]
+    if (sum_local!=sum_main):
+        return False
+    sum_local=0
+    for x in range (0,len(mat)):
+        sum_local+=mat[x][len(mat)-1-x]
+    if (sum_local!=sum_main):
+        return False
+    return True
+                                                      
+
 
 def get_matrix():
     n=int(input("Enter no. of rows:"))
@@ -107,6 +132,7 @@ def get_matrix():
             x.append(int(input("m[%d][%d]:"%(i+1,j+1))))
         matrix.append(x)
     return matrix
+
 
 # print("Matrix 1:")
 # matrix1=get_matrix()
@@ -133,10 +159,9 @@ def get_matrix():
 # print ("Saddle point of matrix:")
 # print("Matrix 1:",saddle(matrix1))
 # print("Matrix 2:",saddle(matrix2))
-
-
-
-
+# print ("If magic Square:")
+# print("Matrix 1:",magic_square(matrix1))
+# print("Matrix 2:",magic_square(matrix2))
 
 
 print ("Select any of the following operations:")
@@ -147,9 +172,11 @@ print ("Operation 4: Add matrix")
 print ("Operation 5: Subrtact matrix" )
 print ("Operation 6: Multipy matrix" )
 print ("Operation 7: Find saddle point")
+print ("Operation 8: Check if it is a magic square?")
 c=int(input("Enter option number:"))
 if(c==1):
     a_matrix=get_matrix()
+    print(" ")
     check=check_triangular(a_matrix)
     if(check):
         print("Yes")
@@ -157,22 +184,32 @@ if(c==1):
         print("No")
 elif(c==2):
     a_matrix=get_matrix()
+    print(" ")
     print(sum_diagonal(a_matrix))
 elif(c==3):
     a_matrix=get_matrix()
+    print(" ")
     print(transpose(a_matrix))
 elif(c==4):
     a_matrix=get_matrix()
     b_matrix=get_matrix()
+    print(" ")
     print(add(a_matrix,b_matrix))
 elif(c==5):
     a_matrix=get_matrix()
     b_matrix=get_matrix()
+    print(" ")
     print(subtract(a_matrix,b_matrix))
 elif(c==6):
     a_matrix=get_matrix()
     b_matrix=get_matrix()
+    print(" ")
     print(multiply(a_matrix,b_matrix))
 elif(c==7):
     a_matrix=get_matrix()
+    print(" ")
     print(saddle(a_matrix))
+elif(c==8):
+    a_matrix=get_matrix()
+    print(" ")
+    print(magic_square(a_matrix))
