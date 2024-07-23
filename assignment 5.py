@@ -26,12 +26,27 @@ def binary_search(stud,k):
     print("Binary Count is", binary_count)
     return ("Student was absent")
         
+def sentinel_search(stud,k):
+    stud.append(k)
+    i=0
+    while(stud[i]!=k):
+        i+=1
+    if(i==len(stud)-1):
+        return("Not found")
+    else:
+        return ("%d is present at %d"%(k,i+1))
+
+    
 
 
 students=eval(input("Enter the list of students who attended the program:"))
-k=int(input("Enter the roll number of student to search:"))
-print("  ")
-print(linear_search(students,k))
-print("  ")
-print(binary_search(students,k))
+for x in range(0,9):
+    k=int(input("Enter the roll number of student to search:"))
+    print("  ")
+    print(linear_search(students,k))
+    print("  ")
+    print(binary_search(students,k))
+    print("  ")
+    print(sentinel_search(students,k))
+    print("  ")
 
