@@ -54,12 +54,49 @@ def add_sparce(m1,m2):
     result[0][2]=count
     return result
 
+def simple_transpose(mat):
+    transe=[[mat[0][1],mat[0][0],mat[0][2]]]
+    for i in range (0,mat[0][1]):
+        for j in range (1,mat[0][2]+1):
+            if(mat[j][1]==i):
+                transe.append([mat[j][1],mat[j][0],mat[j][2]])
+    return transe
 
+def fast_transpose(sparse):
+    s2 = [[sparse[0][1],sparse[0][0],sparse[0][2]]] + [0]* sparse[0][2]
+    freq = [0] * (sparse[0][1]+1)
+    for i in sparse[1:]:
+        freq[(i[1])+1] += 1
+    freq[0]=1
+    for i in range(1,len(freq)-1):
+        freq[i] = freq[i-1]+freq[i]
+    for i in sparse[1:]:
+        s2[freq[i[1]]] = [i[1],i[0],i[2]]
+        freq[i[1]]+=1
+    for i in s2:
+        print(i)
+
+
+# Addition
+ m1=getMatrix()
+ m2=getMatrix()
+ print(" ")
+ print(m1)
+ print(" ")
+ print(m2)
+ print(" ")
+ print(add_sparce(m1,m2))
+
+# Simple_transpose
+ m1=getMatrix()
+ print(" ")
+ print(m1)
+ print(" ")
+ print(simple_transpose(m1))
+
+# Fast_transpose
 m1=getMatrix()
-m2=getMatrix()
 print(" ")
 print(m1)
 print(" ")
-print(m2)
-print(" ")
-print(add_sparce(m1,m2))
+fast_transpose(m1)
