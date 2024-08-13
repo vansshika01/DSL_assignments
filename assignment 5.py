@@ -36,9 +36,44 @@ def sentinel_search(stud,k):
     else:
         return ("%d is present at %d"%(k,i+1))
 
-    
+
+def fibonacci_search(arr, k, n): 
+     
+	fib2 = 0
+	fib1 = 1 
+	fibM = fib2 + fib1 
+     
+	while (fibM < n): 
+		fib2 = fib1 
+		fib1 = fibM 
+		fibM = fib2 + fib1 
+          
+	offset = -1
+
+	while (fibM > 1):  
+		i = min(offset+fib2, n-1) 
+		if (arr[i] < x): 
+			fibM = fib1 
+			fib1 = fib2 
+			fib2 = fibM - fib1 
+			offset = i 
+
+		elif (arr[i] > x): 
+			fibM = fib2 
+			fib1 = fib1 - fib2 
+			fib2 = fibM - fib1 
+
+		else: 
+			return ("%d is present at %d"%(k,i+1))
+          
+	if(fib1 and arr[n-1] == x): 
+		return ("%d is present at %d"%(k,n))
+
+	return ("Not found")
 
 
+
+n=eval(input("Enter number of stuents:"))
 students=eval(input("Enter the list of students who attended the program:"))
 for x in range(0,9):
     k=int(input("Enter the roll number of student to search:"))
@@ -49,4 +84,6 @@ for x in range(0,9):
     print("  ")
     print(sentinel_search(students,k))
     print("  ")
+    print(fibonacci_search(students,k,n))
+    print(" ")
 
