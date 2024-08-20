@@ -11,6 +11,7 @@ def bubble_sort(arr):
                 count+=1
                 swapping=True
         if(not swapping): break
+        print(arr)
     print("No of comparisons:%d \nNo. of swaps:%d \n"%(comp,count))
     return arr
 
@@ -18,13 +19,15 @@ def selection_sort(arr):
     count1=0
     count2=0
     for x in range (len(arr)):
-        min=x
+        mins=x
         for y in range (x+1,len(arr)):
             count1+=1
-            if(arr[y]<arr[x]):
+            if(arr[y]<arr[mins]):
                 count2+=1
-                min=y
-        arr[x],arr[min]=arr[min],arr[x]
+                mins=y
+        if mins!=x:
+            arr[x],arr[mins]=arr[mins],arr[x]
+            print (arr)
 
     print("No of comparisons:%d \nNo. of change:%d \n"%(count1,count2))
     return arr
