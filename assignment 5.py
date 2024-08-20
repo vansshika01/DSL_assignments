@@ -37,39 +37,41 @@ def sentinel_search(stud,k):
         return ("%d is present at %d"%(k,i+1))
 
 
-def fibonacci_search(arr, k, n): 
+def fibonacci_search(arr, x, n): 
+    count=0
+    fib2 = 0
+    fib1 = 1 
+    fibM = fib2 + fib1 
      
-	fib2 = 0
-	fib1 = 1 
-	fibM = fib2 + fib1 
-     
-	while (fibM < n): 
-		fib2 = fib1 
-		fib1 = fibM 
-		fibM = fib2 + fib1 
+    while (fibM < n): 
+        fib2 = fib1 
+        fib1 = fibM 
+        fibM = fib2 + fib1 
           
-	offset = -1
+    offset = 0
 
-	while (fibM > 1):  
-		i = min(offset+fib2, n-1) 
-		if (arr[i] < x): 
-			fibM = fib1 
-			fib1 = fib2 
-			fib2 = fibM - fib1 
-			offset = i 
+    while (fibM > 1):  
+        count+=1
+        i = min(offset+fib2, n-1) 
+        if (arr[i] < x): 
+            fibM = fib1 
+            fib1 = fib2 
+            fib2 = fibM - fib1 
+            offset = i 
 
-		elif (arr[i] > x): 
-			fibM = fib2 
-			fib1 = fib1 - fib2 
-			fib2 = fibM - fib1 
+        elif (arr[i] > x): 
+            fibM = fib2 
+            fib1 = fib1 - fib2 
+            fib2 = fibM - fib1 
 
-		else: 
-			return ("%d is present at %d"%(k,i+1))
-          
-	if(fib1 and arr[n-1] == x): 
-		return ("%d is present at %d"%(k,n))
+        else: 
+            print("comparison:%d"%(count))
+            return ("%d is present at %d"%(x,i+1))
+    print("comparison:%d"%(count))
+    if(fib1 and offset <n-1 and arr[offset+1] == x): 
+        return ("%d is present at %d"%(x,n))
 
-	return ("Not found")
+    return ("Not found")
 
 
 
@@ -77,13 +79,13 @@ n=eval(input("Enter number of stuents:"))
 students=eval(input("Enter the list of students who attended the program:"))
 for x in range(0,9):
     k=int(input("Enter the roll number of student to search:"))
-    print("  ")
-    print(linear_search(students,k))
-    print("  ")
-    print(binary_search(students,k))
-    print("  ")
-    print(sentinel_search(students,k))
-    print("  ")
+    # print("  ")
+    # print(linear_search(students,k))
+    # print("  ")
+    # print(binary_search(students,k))
+    # print("  ")
+    # print(sentinel_search(students,k))
+    # print("  ")
     print(fibonacci_search(students,k,n))
     print(" ")
 
