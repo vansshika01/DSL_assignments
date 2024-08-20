@@ -77,26 +77,24 @@ def fast_transpose(sparse):
         print(i)
 
 
-# Addition
- m1=getMatrix()
- m2=getMatrix()
- print(" ")
- print(m1)
- print(" ")
- print(m2)
- print(" ")
- print(add_sparce(m1,m2))
+# # Addition
+# m1=getMatrix()
+# m2=getMatrix()
+# print(" ")
+# print(m1)
+# print(" ")
+# print(m2)
+# print(" ")
+# print(add_sparce(m1,m2))
 
-# Simple_transpose
- m1=getMatrix()
- print(" ")
- print(m1)
- print(" ")
- print(simple_transpose(m1))
-
-# Fast_transpose
 m1=getMatrix()
-print(" ")
+print("  ")
 print(m1)
 print(" ")
+# Simple_transpose
+print("Simple Transpose")
+print(simple_transpose(m1))
+print(" ")
+# Fast_transpose
+print("Fast Transpose ")
 fast_transpose(m1)
