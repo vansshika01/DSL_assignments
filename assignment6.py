@@ -32,20 +32,40 @@ def selection_sort(arr):
     print("No of comparisons:%d \nNo. of change:%d "%(count1,count2))
     return arr
 
+def insertionSort(arr):
+    comp=0
+    swaps=0
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        comp+=1
+        while j >= 0 and key < arr[j]:
+            swaps+=1
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    print("No of comparisons:%d \nNo. of swaps:%d "%(comp,swaps))
+    return arr
+
 def shellSort(arr2, n):
+    comp=0
+    swaps=0
     g=n//2
     while g>0:
         j=g
         while j<n:
             i=j-g
             while i>=0:
+                comp+=1
                 if arr2[i+g]>arr2[i]:
                     break
                 else:
+                    swaps+=1
                     arr2[i+g],arr2[i]=arr2[i],arr2[i+g]
                 i=i-g
             j+=1
         g=g//2
+    print("No of comparisons:%d \nNo. of swaps:%d "%(comp,swaps))
     return arr2
     
 
@@ -54,6 +74,7 @@ n=int(input("Enter the number of elements in list: "))
 l=eval(input("Enter the list of numbers:"))
 l2=l.copy()
 l3=l.copy()
+l4=l.copy()
 print(" ")
 print("Bubble Sort: ")
 # start=datetime.now()
@@ -67,5 +88,7 @@ print (selection_sort(l2),"\n")
 # # end2=datetime.now()
 # print ("Time: ",end2.timestamp()*1000-start2.timestamp()*1000," sec")
 # print(" ")
+print("Insertion Sort:")
+print (insertionSort(l4),"\n")
 print("Shell Sort:")
 print (shellSort(l3,len(l3)),"\n")
